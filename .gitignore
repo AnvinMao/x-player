@@ -1,0 +1,7 @@
+.idea
+node_modules
+npm-debug.log
+XPlayer.log*
+.vscode
+package-lock.json
+yarn.lock

@@ -1,0 +1,143 @@
+.xplayer {
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+
+    * {
+        box-sizing: content-box;
+    }
+
+    svg {
+        width: 100%;
+        height: 100%;
+        fill: currentColor;
+        display: inline-block;
+        vertical-align: middle;
+        pointer-events: none;
+    }
+
+    &:-webkit-full-screen {
+        width: 100%;
+        height: 100%;
+        background: #000;
+        position: fixed;
+        z-index: 100000;
+        left: 0;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        transform: translate(0, 0);
+        
+    }
+
+    &.xplayer-live {
+        .xplayer-time {
+            display: none;
+        }
+        .xplayer-bar-wrap {
+            display: none;
+        }
+        .xplayer-setting-speed {
+            display: none;
+        }
+        .xplayer-setting {
+            display: none;
+        }
+    }
+
+    &.xplayer-playing {
+
+        @media (min-width: 900px) {
+            .xplayer-controller-mask {
+                opacity: 0;
+            }
+            .xplayer-controller {
+                opacity: 0;
+            }
+
+            &:hover {
+                .xplayer-controller-mask {
+                    opacity: 1;
+                }
+                .xplayer-controller {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &.xplayer-loading {
+        .xplayer-bezel .xiplayer-loading-icon {
+            display: block;
+        }
+    }
+
+    &.xplayer-hide-controller {
+        cursor: none;
+
+        .xplayer-controller-mask {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+        .xplayer-controller {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+    }
+    &.xplayer-show-controller {
+        .xplayer-controller-mask {
+            opacity: 1;
+        }
+        .xplayer-controller {
+            opacity: 1;
+        }
+    }
+    &.xplayer-fulled {
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+    &.xplayer-mobile {
+        .xplayer-controller .xplayer-icons {
+            .xplayer-volume,
+            .xplayer-camera-icon,
+            .xplayer-airplay-icon,
+            .xplayer-chromecast-icon,
+            .xplayer-play-icon {
+                display: none;
+            }
+            .xplayer-full .xplayer-full-in-icon {
+                position: static;
+                display: inline-block;
+            }
+        }
+
+        &.xplayer-hide-controller {
+            .xplayer-mobile-play {
+                display: none;
+            }
+        }
+
+        .xplayer-mobile-play {
+            display: block;
+        }
+    }
+
+    button {
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+}
+.xplayer-fixed {
+    overflow: hidden;
+}

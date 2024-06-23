@@ -1,0 +1,32 @@
+.xplayer-menu {
+    position: absolute;
+    width: 180px;
+    border-radius: 2px;
+    background: rgba(28, 28, 28, 0.85);
+    padding: 5px 0;
+    overflow: hidden;
+    z-index: 15;
+    display: none;
+    &.xplayer-menu-show {
+        display: block;
+    }
+    .xplayer-menu-item {
+        height: 30px;
+        box-sizing: border-box;
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(255, 255, 255, .1);
+        }
+        a {
+            display: block;
+            color: #eee;
+            font-size: 13px;
+            line-height: 30px;
+            padding: 0 10px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            text-decoration: none;
+        }
+    }
+}

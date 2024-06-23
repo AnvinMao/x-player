@@ -1,0 +1,27 @@
+.xplayer-mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: none;
+    &.xplayer-mask-show {
+        display: block;
+    }
+}
+
+.xplayer-video-wrap {
+    position: relative;
+    background: #000;
+    width: 100%;
+    height: 100%;
+    .xplayer-video {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+    .xplayer-video-temp {
+        display: none;
+    }
+}

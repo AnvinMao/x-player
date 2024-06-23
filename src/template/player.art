@@ -1,0 +1,151 @@
+<div class="xplayer-mask"></div>
+<div class="xplayer-video-wrap">
+    {{ include './video.art' video }}
+    {{ if options.logo }}
+    <div class="xplayer-logo">
+        <img src="{{ options.logo }}">
+    </div>
+    {{ /if }}
+    <div class="xplayer-bezel">
+        <span class="xplayer-bezel-icon"></span>
+        <span class="xiplayer-loading-icon">{{@ icons.loading }}</span>
+    </div>
+</div>
+<div class="xplayer-controller-mask"></div>
+<div class="xplayer-controller">
+    <div class="xplayer-bar-wrap">
+        <div class="xplayer-bar-time hidden">00:00</div>
+        <div class="xplayer-bar-preview"></div>
+        <div class="xplayer-bar">
+            <div class="xplayer-loaded" style="width: 0;"></div>
+            <div class="xplayer-played" style="width: 0; background: {{ options.theme }}">
+                <span class="xplayer-thumb" style="background: {{ options.theme }}"></span>
+            </div>
+        </div>
+    </div>
+    <div class="xplayer-icons">
+        <div class="xplayer-icons-area">
+            <button class="xplayer-icon xplayer-play-icon">
+                {{@ icons.play }}
+            </button>
+            <div class="xplayer-volume">
+                <button class="xplayer-icon xplayer-volume-icon">
+                    {@ icons.volumeDown }}
+                </button>
+                <div class="xplayer-volume-bar-wrap">
+                    <div class="xplayer-volume-bar">
+                        <div class="xplayer-volume-bar-inner">
+                            <span class="xplayer-thumb"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span class="xplayer-time">
+                <span class="xplayer-ptime">0:00</span> /
+                <span class="xplayer-dtime">0:00</span>
+            </span>
+            {{ if options.live }}
+            <span class="xplayer-live-badge"><span style="background: {{ options.theme }};"></span>{{ tran('live') }}</span>
+            {{ /if }}
+        </div>
+
+        <div class="xplayer-icons-area">
+            {{ if options.airplay }}
+            <button class="xplayer-icon xplayer-airplay-icon">
+                {{@ icons.airplay }}
+            </button>
+            {{ /if }}
+            {{ if options.chromecast }}
+            <button class="xplayer-icon xplayer-chromecast-icon">
+                {{@ icons.chromecast }}
+            </button>
+            {{ /if }}
+            {{ if options.screenshot }}
+            <button class="xplayer-icon xplayer-camera-icon">
+                {{@ icons.camera }}
+            </button>
+            {{ /if }}
+            <div class="xplayer-setting">
+                <button class="xplayer-icon xplayer-setting-icon">
+                    {{@ icons.setting }}
+                </button>
+                <div class="xplayer-setting-box">
+                    <div class="xplayer-setting-origin-panel">
+                        <div class="xplayer-setting-toggle">
+                            <span class="xplayer-label">{{ tran('loop') }}</span>
+                            <div class="xplayer-toggle xplayer-toggle-loop">
+                                <input class="xplayer-toggle-input" type="checkbox" name="xplayer-toggle">
+                                <label for="xplayer-toggle" style="background: {{ options.theme }}"></label>
+                            </div>
+                        </div>
+                        <div class="xplayer-setting-item" data-narrow="speed">
+                            <span class="xplayer-label">{{ tran('speed') }}</span>
+                            <span class="xplayer-setting-val">
+                                {{ (options.video.playbackRate || 1) === 1 ? tran('normal') : options.video.playbackRate }}
+                            </span>
+                            <span>{{@ icons.right }}</span>
+                        </div>
+                        {{ if options.video.quality }}
+                        <div class="xplayer-setting-item" data-narrow="quality">
+                            <span class="xplayer-label">{{ tran('quality') }}</span>
+                            <span class="xplayer-setting-val">
+                                {{ options.video.quality[options.video.defaultQuality].name }}
+                            </span>
+                            <span>{{@ icons.right }}</span>
+                        </div>
+                        {{ /if }}
+                    </div>
+                    <div class="xplayer-setting-narrow-panel">
+                        <span class="xplayer-setting-back">
+                            {{@ icons.right }}
+                        </span>
+                        <div class="xplayer-setting-speed">
+                            <div class="xplayer-narrow-title">
+                                {{ tran('speed') }}
+                            </div>
+                            {{ each options.playbackSpeed }}
+                                <div class="xplayer-setting-item" data-speed="{{ $value }}">
+                                    {{ $value === 1 ? tran('normal') : $value }}
+                                </div>
+                            {{ /each }}
+                        </div>
+                        {{ if options.video.quality }}
+                        <div class="xplayer-setting-quality">
+                            <div class="xplayer-narrow-title">
+                                {{ tran('quality') }}
+                            </div>
+                            {{ each options.video.quality }}
+                                <div class="xplayer-setting-item" data-quality="{{ $index }}">
+                                    {{ $value.name }}
+                                </div>
+                            {{ /each }}
+                        </div>
+                        {{ /if }}
+                    </div>
+                </div>
+            </div>
+
+            <button class="xplayer-icon xplayer-full-in-icon">
+                {{@ icons.fullWeb }}
+            </button>
+            <button class="xplayer-icon xplayer-full-icon">
+                {{@ icons.full }}
+            </button>
+        </div>
+    </div>
+</div>
+<div class="xplayer-info-panel xplayer-info-panel-hide">
+    <div class="xplayer-info-panel-close">×</div>
+    <div class="xplayer-info-list"></div>
+</div>
+<div class="xplayer-menu">
+    {{ each options.contextmenu }}
+        <div class="xplayer-menu-item">
+            <a{{ if $value.link }} target="_blank"{{ /if }} href="{{ $value.link || 'javascript:void(0);' }}">{{ if $value.key }} {{ tran($value.key) }}{{ /if }}{{ if $value.text }}{{$value.text}}{{ /if }}</a>
+        </div>
+    {{ /each }}
+</div>
+<div class="xplayer-notice-list"></div>
+<button class="xplayer-mobile-play">
+    {{@ icons.play }}
+</button>

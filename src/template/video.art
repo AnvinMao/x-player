@@ -1,0 +1,18 @@
+<video
+    class="xplayer-video {{ if temp }}xplayer-video-temp{{ /if }}"
+    webkit-playsinline
+    {{ if airplay }} x-webkit-airplay="allow" {{ /if }}
+    playsinline
+    {{ if poster }}poster="{{ poster }}"{{ /if }}
+    {{ if screenshot }}crossorigin="anonymous"{{ /if }}
+    {{ if preload }}preload="{{ preload }}"{{ /if }}
+    {{ if airplay }}
+    nosrc
+    {{ else if url }}
+    src="{{ url }}"
+    {{ /if }}
+    >
+    {{ if airplay }}
+    <source src="{{ url }}">
+    {{ /if}}
+</video>
