@@ -1,5 +1,5 @@
 {
-    "name": "@xplayer/core",
+    "name": "xplayer-core",
     "version": "1.0.0",
     "description": "XPlayer, Base on DPlayer",
     "main": "dist/XPlayer.min.js",
