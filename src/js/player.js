@@ -230,7 +230,7 @@ class XPlayer {
         this.type = type;
         if (this.options.video.customType && this.options.video.customType[type]) {
             if (Object.prototype.toString.call(this.options.video.customType[type]) === '[object Function]') {
-                this.options.video.customType[type](this.video, this);
+                this.options.video.customType[type](this);
             } else {
                 console.error(`Illegal customType: ${type}`);
             }

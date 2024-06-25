@@ -25,10 +25,10 @@
     </div>
     <div class="xplayer-icons">
         <div class="xplayer-icons-area">
-            <button class="xplayer-icon xplayer-play-icon">
+            <button class="xplayer-icon xplayer-play-icon xplayer-mhide">
                 {{@ icons.play }}
             </button>
-            <div class="xplayer-volume">
+            <div class="xplayer-volume xplayer-mhide">
                 <button class="xplayer-icon xplayer-volume-icon">
                     {@ icons.volumeDown }}
                 </button>
@@ -51,17 +51,17 @@
 
         <div class="xplayer-icons-area">
             {{ if options.airplay }}
-            <button class="xplayer-icon xplayer-airplay-icon">
+            <button class="xplayer-icon xplayer-airplay-icon xplayer-mhide">
                 {{@ icons.airplay }}
             </button>
             {{ /if }}
             {{ if options.chromecast }}
-            <button class="xplayer-icon xplayer-chromecast-icon">
+            <button class="xplayer-icon xplayer-chromecast-icon xplayer-mhide">
                 {{@ icons.chromecast }}
             </button>
             {{ /if }}
             {{ if options.screenshot }}
-            <button class="xplayer-icon xplayer-camera-icon">
+            <button class="xplayer-icon xplayer-camera-icon xplayer-mhide">
                 {{@ icons.camera }}
             </button>
             {{ /if }}

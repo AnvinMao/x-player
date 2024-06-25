@@ -8,18 +8,18 @@ module.exports = {
 
     devtool: 'cheap-module-source-map',
 
-    entry: {
-        XPlayer: './src/js/index.js',
-    },
+    entry: './src/index.js',
 
     output: {
         path: path.resolve(__dirname, '..', 'dist'),
-        filename: '[name].js',
-        library: '[name]',
-        libraryTarget: 'umd',
-        libraryExport: 'default',
-        umdNamedDefine: true,
-        publicPath: '/',
+        filename: 'xplayer.js',
+        library: {
+            name: 'XPlayer',
+            type: 'umd',
+            umdNamedDefine: true,
+            export: 'default'
+        },
+        publicPath: '/'
     },
 
     resolve: {

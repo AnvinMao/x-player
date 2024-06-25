@@ -50,18 +50,12 @@
     &.xplayer-playing {
 
         @media (min-width: 900px) {
-            .xplayer-controller-mask {
-                opacity: 0;
-            }
-            .xplayer-controller {
+            .xplayer-controller-mask, .xplayer-controller {
                 opacity: 0;
             }
 
             &:hover {
-                .xplayer-controller-mask {
-                    opacity: 1;
-                }
-                .xplayer-controller {
+                .xplayer-controller-mask, .xplayer-controller {
                     opacity: 1;
                 }
             }
@@ -77,20 +71,13 @@
     &.xplayer-hide-controller {
         cursor: none;
 
-        .xplayer-controller-mask {
-            opacity: 0;
-            transform: translateY(100%);
-        }
-        .xplayer-controller {
+        .xplayer-controller-mask, .xplayer-controller {
             opacity: 0;
             transform: translateY(100%);
         }
     }
     &.xplayer-show-controller {
-        .xplayer-controller-mask {
-            opacity: 1;
-        }
-        .xplayer-controller {
+        .xplayer-controller-mask, .xplayer-controller {
             opacity: 1;
         }
     }
@@ -103,18 +90,8 @@
         height: 100%;
     }
     &.xplayer-mobile {
-        .xplayer-controller .xplayer-icons {
-            .xplayer-volume,
-            .xplayer-camera-icon,
-            .xplayer-airplay-icon,
-            .xplayer-chromecast-icon,
-            .xplayer-play-icon {
-                display: none;
-            }
-            .xplayer-full .xplayer-full-in-icon {
-                position: static;
-                display: inline-block;
-            }
+        .xplayer-mhide {
+            display: none!important;
         }
 
         &.xplayer-hide-controller {

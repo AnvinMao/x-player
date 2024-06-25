@@ -1,29 +1,19 @@
 const path = require('path');
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
 const gitRevisionPlugin = new GitRevisionPlugin();
 
-module.exports = {
+const baseConfig = {
     mode: 'production',
-
-    bail: true,
-
     devtool: false,
-
     entry: {
-        XPlayer: './src/js/index.js',
+        xplayer: './src/index.js',
     },
-
     output: {
         path: path.resolve(__dirname, '..', 'dist'),
-        filename: '[name].min.js',
-        library: '[name]',
-        libraryTarget: 'umd',
-        libraryExport: 'default',
-        umdNamedDefine: true,
-        publicPath: '/',
+        publicPath: '/'
     },
-
     resolve: {
         modules: ['node_modules'],
         extensions: ['.js', '.less'],
@@ -35,7 +25,6 @@ module.exports = {
         },
         preferRelative: true,
     },
-
     module: {
         strictExportPresence: true,
         rules: [
@@ -48,14 +37,14 @@ module.exports = {
                         options: {
                             cacheDirectory: true,
                             presets: ['@babel/preset-env'],
-                        },
-                    },
-                ],
+                        }
+                    }
+                ]
             },
             {
                 test: /\.less$/,
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
@@ -68,7 +57,7 @@ module.exports = {
                             postcssOptions: {
                                 plugins: [
                                     'postcss-preset-env',
-                                    ['cssnano', { preset: 'default' }],
+                                    ['cssnano', { preset: 'default' }]
                                 ],
                             },
                         },
@@ -94,13 +83,60 @@ module.exports = {
                     minimize: true,
                 },
             },
-        ],
+        ]
     },
-
+    optimization: {
+        minimize: false,
+    },
     plugins: [
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+        }),
         new webpack.DefinePlugin({
             XPLAYER_VERSION: `"${require('../package.json').version}"`,
             GIT_HASH: JSON.stringify(gitRevisionPlugin.version()),
         }),
     ],
-};
+}
+
+const umdConfig = {
+    ...baseConfig,
+    output: {
+        ...baseConfig.output,
+        filename: '[name].js',
+        library: {
+            name: 'XPlayer',
+            type: 'umd',
+            umdNamedDefine: true,
+            export: 'default'
+        }
+    },
+}
+
+const esmConfig = {
+    ...baseConfig,
+    output: {
+        ...baseConfig.output,
+        filename: '[name].esm.js',
+        library: {
+            type: 'module'
+        }
+    },
+    experiments: {
+        outputModule: true
+    }
+}
+
+const cjsConfig = {
+    ...baseConfig,
+    output: {
+        ...baseConfig.output,
+        filename: '[name].cjs.js',
+        library: {
+            name: 'XPlayer',
+            type: 'commonjs2'
+        }
+    }
+}
+
+module.exports = [baseConfig, umdConfig, esmConfig, cjsConfig];

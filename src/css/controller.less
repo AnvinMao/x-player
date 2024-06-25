@@ -40,7 +40,7 @@
         width: calc(100% - @--contrl-padding * 2);
         position: relative;
         &:hover {
-            .xplayer-bar .xplayer-played .xplayer-thumb {
+            .xplayer-thumb {
                 transform: scale(1);
             }
             .xplayer-highlight {
@@ -113,10 +113,7 @@
                 .xplayer-highlight-text {
                     display: block;
                 }
-                &~.xplayer-bar-preview {
-                    opacity: 0;
-                }
-                &~.xplayer-bar-time {
+                &~.xplayer-bar-preview, &~.xplayer-bar-time {
                     opacity: 0;
                 }
             }
@@ -185,36 +182,34 @@
             display: flex;
             align-items: center;
             cursor: pointer;
-            &:hover, &.xplayer-volume-active {
-                .xplayer-volume-bar-wrap {
-                    .xplayer-volume-bar {
-                        width: 45px;
-                        .xplayer-thumb {
-                            transform: scale(1);
-                        }
-                    }
-                }
-            }
             .xplayer-volume-bar-wrap {
                 margin: 0 15px 0 0;
                 padding: 5px 0;
+            }
+            .xplayer-volume-bar {
+                position: relative;
+                width: 0;
+                height: @--contrl-bar-height;
+                background: rgba(255,255,255,.4);
+                transition: all 0.3s ease-in-out;
+            }
+            .xplayer-volume-bar-inner {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 100%;
+                will-change: width;
+                background: #FFF;
+            }
+            .xplayer-thumb {
+                background: #FFF;
+            }
+            &:hover, &.xplayer-volume-active {
                 .xplayer-volume-bar {
-                    position: relative;
-                    width: 0;
-                    height: @--contrl-bar-height;
-                    background: rgba(255,255,255,.4);
-                    transition: all 0.3s ease-in-out;
-                    .xplayer-volume-bar-inner {
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
-                        height: 100%;
-                        will-change: width;
-                        background: #FFF;
-                    }
-                    .xplayer-thumb {
-                        background: #FFF;
-                    }
+                    width: 45px;
+                }
+                .xplayer-thumb {
+                    transform: scale(1);
                 }
             }
         }
@@ -244,16 +239,6 @@
             .xplayer-setting-narrow-panel {
                 display: none;
                 position: relative;
-                .xplayer-setting-back {
-                    position: absolute;
-                    top: 7px;
-                    left: 3px;
-                    display: block;
-                    width: 25px;
-                    height: 20px;
-                    cursor: pointer;
-                    transform: rotate(180deg);
-                }
                 .xplayer-narrow-title {
                     line-height: 1;
                     padding: 9px 10px 15px 35px;
@@ -263,6 +248,17 @@
                 &>div {
                     display: none;
                 }
+            }
+            
+            .xplayer-setting-back {
+                position: absolute;
+                top: 7px;
+                left: 3px;
+                display: block;
+                width: 25px;
+                height: 20px;
+                cursor: pointer;
+                transform: rotate(180deg);
             }
 
             &[class*="xplayer-setting-narrow-"] {
@@ -287,18 +283,6 @@
                 padding: 10px 12px;
                 cursor: pointer;
                 font-size: 14px;
-                .xplayer-label {
-                    flex: 1;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    white-space: nowrap;
-                    word-break: keep-all;
-                }
-                .xplayer-setting-val {
-                    font-size: 12px;
-                    color: #CCC;
-                    padding: 0 3px;
-                }
                 &:hover {
                     background: rgba(255, 255, 255, .2);
                 }
@@ -308,6 +292,18 @@
                     display: block;
                 }
             }
+        }
+        .xplayer-label {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-break: keep-all;
+        }
+        .xplayer-setting-val {
+            font-size: 12px;
+            color: #CCC;
+            padding: 0 3px;
         }
         .xplayer-toggle {
             padding-right: 5px;
