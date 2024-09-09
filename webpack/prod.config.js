@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
 const gitRevisionPlugin = new GitRevisionPlugin();
 
@@ -96,6 +97,11 @@ const baseConfig = {
             XPLAYER_VERSION: `"${require('../package.json').version}"`,
             GIT_HASH: JSON.stringify(gitRevisionPlugin.version()),
         }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'types/index.d.ts', to: 'index.d.ts' }
+            ]
+        })
     ],
 }
 

@@ -1,12 +1,12 @@
 {
     "name": "xplayer-core",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "XPlayer, Base on DPlayer",
     "main": "dist/xplayer.cjs.js",
     "module": "dist/xplayer.esm.js",
     "browser": "dist/xplayer.js",
     "style": "dist/xplayer.css",
-    "types": "types/index.d.ts",
+    "types": "dist/index.d.ts",
     "scripts": {
         "start": "npm run dev",
         "build": "cross-env NODE_ENV=production webpack --config webpack/prod.config.js --progress",
@@ -40,6 +40,7 @@
         "art-template": "4.13.2",
         "art-template-loader": "1.4.3",
         "babel-loader": "^9.1.3",
+        "copy-webpack-plugin": "^12.0.2",
         "cross-env": "^7.0.0",
         "css-loader": "^6.8.1",
         "cssnano": "^7.0.3",
