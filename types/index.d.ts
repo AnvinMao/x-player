@@ -52,7 +52,7 @@ declare namespace XPlayer {
     click?(player: XPlayer): void;
   }
 
-  export interface Video {
+  export interface VideoOptions {
     url: string;
     poster?: string;
     thumbnails?: { url: string, count: number };
@@ -67,7 +67,7 @@ declare namespace XPlayer {
     live?: boolean;
     autoplay?: boolean;
     theme?: string;
-    lang?: string;
+    lang?: 'en' | 'zh-cn' | 'zh-tw' | 'ko-kr' | 'de' | 'ja' | 'ru';
     screenshot?: boolean;
     airplay?: boolean;
     chromecast?: boolean;
@@ -76,7 +76,7 @@ declare namespace XPlayer {
     preload?: 'metadata' | 'auto' | 'none';
     volume?: number;
     playbackSpeed?: number[];
-    video: Video;
+    video: VideoOptions;
     highlight?: { time: number, text: string }[];
     contextmenu?: ContextMenu[];
     metex?: boolean;
@@ -89,14 +89,14 @@ declare class XPlayer {
   constructor(options: XPlayer.Options);
 
   static get version(): string;
-  video: XPlayer.Video;
+  video: HTMLMediaElement;
 
   play(): void;
   pause(): void;
   toggle(): void;
   destroy(): void;
   speed(rate: number): void;
-  switchVideo(video: XPlayer.Video): void;
+  switchVideo(video: XPlayer.VideoOptions): void;
   notice(text: string, time: number, opacity: number, id: string): void;
   volume(percentage: string, nostorage: boolean): any;
   switchQuality(index: number): void;
