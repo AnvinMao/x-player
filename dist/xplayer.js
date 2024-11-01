@@ -3037,7 +3037,7 @@ var InfoPanel = function () {
         {
             key: 'update',
             value: function update() {
-                this.infoVersion.innerHTML = 'v'.concat("1.0.2", ' ').concat("cd37615");
+                this.infoVersion.innerHTML = 'v'.concat("1.0.4", ' ').concat("f82ebbc");
                 this.infoType.innerHTML = this.player.type;
                 this.infoViewport.innerHTML = ''.concat(this.player.video.clientWidth, ' x ').concat(this.player.video.clientHeight, ' / ').concat(this.player.video.videoWidth, ' x ').concat(this.player.video.videoHeight);
                 this.infoDuration.innerHTML = this.player.video.duration || 0;
@@ -3663,7 +3663,7 @@ var XPlayer = function () {
     ], [{
             key: 'version',
             get: function get() {
-                return "1.0.2";
+                return "1.0.4";
             }
         }]);
 }();
